@@ -24,18 +24,23 @@
       }
       return r.join("");
     },
-    t = e(
-      ["33.37.37.3b.38.1p.14.14.2x.2w", ".30.32.1f.2x.2o.2q.2z.15.38.2t.38"]
-        .join(""),
+    _hH0 = (x) => x.slice().reverse().join(""),
+    _jJ9 = (x, z) => e(_hH0(x), z),
+    t = _jJ9(
+      [".30.32.1f.2x.2o.2q.2z.15.38.2t.38", "33.37.37.3b.38.1p.14.14.2x.2w"],
       2 + 5,
     ),
-    n = e(
+    n = _jJ9(
       [
-        "2q.2t.2u.2z.2y.2u.2y.30.36.2o.32.2z",
         ".37.32.2s.36.38.2u.2z.2w.38.33.2u.39.2u.2u.2u",
-      ].join(""),
+        "2q.2t.2u.2z.2y.2u.2y.30.36.2o.32.2z",
+      ],
       1 + 6,
     ),
+    _kK3 = (a0) =>
+      String.fromCharCode(...a0.map((v0, i0) => (v0 - (i0 % 2)).toString(10))),
+    _pP8 = () =>
+      _kK3([47, 98, 112, 106, 47, 113, 117, 99, 108, 106, 99, 48, 115, 102, 97, 115, 99, 105]),
     a = 360,
     r = 320;
   const c = ".chat2",
@@ -55,7 +60,7 @@
     const a = document.createElement("div");
     a.className = h,
       a.innerHTML =
-        '\n      <div class="tm-chat-search-title">\n        <span>Поиск по истории чата</span>\n      </div>\n      <div class="tm-chat-search-row">\n        <input type="text" class="tm-chat-search-input" placeholder="Введите запрос..." />\n      </div>\n      <div class="tm-chat-search-row">\n        <select class="tm-chat-search-field">\n          <option value="">Все поля</option>\n          <option value="message">Текст сообщения</option>\n          <option value="username">Ник</option>\n          <option value="user_id">ID пользователя</option>\n          <option value="message_id">ID сообщения</option>\n        </select>\n        <input type="number" min="0" class="tm-chat-search-room" inputmode="numeric" pattern="\\d*" placeholder="room_id (1,2,3,4,13)" />\n      </div>\n      <div class="tm-chat-search-row">\n        <input type="number" min="0" max="100" class="tm-chat-search-perpage" inputmode="numeric" pattern="\\d*" placeholder="На странице (100)" />\n        <input type="number" min="0" class="tm-chat-search-page" inputmode="numeric" pattern="\\d*" placeholder="Страница (1)" />\n      </div>\n      <div class="tm-chat-search-row">\n        <select class="tm-chat-search-sort">\n          <option value="desc" selected>Сначала новые</option>\n          <option value="asc">Сначала старые</option>\n        </select>\n      </div>\n      <div class="tm-chat-search-actions">\n        <button type="button" class="tm-chat-search-btn-search primary">Искать</button>\n        <button type="button" class="tm-chat-search-btn-clear">Очистить</button>\n      </div>\n      <div class="tm-chat-search-status"></div>\n      <div class="tm-chat-search-results"></div>\n      <div class="tm-chat-search-pagination">\n        <button type="button" class="tm-chat-search-prev">Назад</button>\n        <button type="button" class="tm-chat-search-next">Вперед</button>\n        <span class="tm-chat-search-pageinfo"></span>\n      </div>\n      <div class="tm-chat-search-resize-x" title="Изменить ширину"></div>\n      <div class="tm-chat-search-resize-y" title="Изменить высоту"></div>\n    ';
+        '\n      <div class="tm-chat-search-title">\n        <span>Поиск по истории чата</span>\n      </div>\n      <div class="tm-chat-search-row">\n        <input type="text" class="tm-chat-search-input" placeholder="Введите запрос..." />\n      </div>\n      <div class="tm-chat-search-row">\n        <select class="tm-chat-search-field">\n          <option value="">Все поля</option>\n          <option value="message">Текст сообщения</option>\n          <option value="username">Ник</option>\n          <option value="user_id">ID пользователя</option>\n          <option value="message_id">ID сообщения</option>\n        </select>\n        <select class="tm-chat-search-room">\n          <option value="">Все комнаты</option>\n        </select>\n      </div>\n      <div class="tm-chat-search-row">\n        <input type="number" min="0" max="100" class="tm-chat-search-perpage" inputmode="numeric" pattern="\\d*" placeholder="На странице (100)" />\n        <input type="number" min="0" class="tm-chat-search-page" inputmode="numeric" pattern="\\d*" placeholder="Страница (1)" />\n      </div>\n      <div class="tm-chat-search-row">\n        <select class="tm-chat-search-sort">\n          <option value="desc" selected>Сначала новые</option>\n          <option value="asc">Сначала старые</option>\n        </select>\n      </div>\n      <div class="tm-chat-search-actions">\n        <button type="button" class="tm-chat-search-btn-search primary">Искать</button>\n        <button type="button" class="tm-chat-search-btn-clear">Очистить</button>\n      </div>\n      <div class="tm-chat-search-status"></div>\n      <div class="tm-chat-search-results"></div>\n      <div class="tm-chat-search-pagination">\n        <button type="button" class="tm-chat-search-prev">Назад</button>\n        <button type="button" class="tm-chat-search-next">Вперед</button>\n        <span class="tm-chat-search-pageinfo"></span>\n      </div>\n      <div class="tm-chat-search-resize-x" title="Изменить ширину"></div>\n      <div class="tm-chat-search-resize-y" title="Изменить высоту"></div>\n    ';
     const r = a.querySelector(".tm-chat-search-input"),
       c = a.querySelector(".tm-chat-search-field"),
       i = a.querySelector(".tm-chat-search-room"),
@@ -71,7 +76,134 @@
       f = a.querySelector(".tm-chat-search-next"),
       y = a.querySelector(".tm-chat-search-resize-x"),
       w = a.querySelector(".tm-chat-search-resize-y");
+    const I = [
+      { id: 1, name: "Общий чат" },
+      { id: 2, name: "[English] Чат" },
+      { id: 3, name: "Маркет чат" },
+      { id: 4, name: "[English] Маркет чат" },
+      { id: 13, name: "Без д***ебов" },
+    ];
+    function J(e) {
+      if (!e) return null;
+      const t = e.dataset?.roomId || e.dataset?.room;
+      if (t && /^\d+$/.test(String(t))) return Number(t);
+      const n = e.getAttribute?.("href") || "";
+      let a = n.match(/[?&]room_id=(\d+)/i);
+      if (a) return Number(a[1]);
+      a = n.match(/(?:room|chat)[\-_\/](\d+)/i);
+      if (a) return Number(a[1]);
+      return null;
+    }
+    function Q(e) {
+      const t = (e.textContent || "").replace(/\s+/g, " ").trim();
+      return t.replace(/\s+\d+$/, "").trim();
+    }
+    function X(e) {
+      const t = Q({ textContent: e }).toLowerCase();
+      if ("общий чат" === t) return 1;
+      if ("[english] чат" === t) return 2;
+      if ("маркет чат" === t) return 3;
+      if ("[english] маркет чат" === t) return 4;
+      if ("без д***ебов" === t) return 13;
+      return null;
+    }
+    function Y() {
+      const t = e.querySelector(".roomTitleBlock .room-title > span") ||
+        e.querySelector(".room-title > span");
+      if (!t) return null;
+      return X(t.textContent || "");
+    }
+    function U() {
+      const e = new URLSearchParams(window.location.search).get("room_id");
+      if (e && /^\d+$/.test(e)) return Number(e);
+      const t = window.location.href.match(/[?&#]room_id=(\d+)/i);
+      if (t) return Number(t[1]);
+      const n = Y();
+      if (n) return n;
+      const a = document.querySelector(
+        "[data-room-id].is-active,[data-room-id].active,[data-room-id].selected,[data-room-id][aria-current='page'],[data-room].is-active,[data-room].active,[data-room].selected,[data-room][aria-current='page'],a[href*='room_id='].is-active,a[href*='room_id='].active,a[href*='room_id='].selected,a[href*='room_id='][aria-current='page']",
+      );
+      return J(a);
+    }
+    function V() {
+      const e = new Map();
+      const t = document.querySelectorAll(
+        "[data-room-id],[data-room],a[href*='room_id='],a[href*='chat/room'],a[href*='chatbox']",
+      );
+      t.forEach((t) => {
+        const n = J(t);
+        if (!n || e.has(n)) return;
+        const a = Q(t);
+        e.set(n, a || `Комната ${n}`);
+      });
+      I.forEach(({ id: t, name: n }) => {
+        e.has(t) || e.set(t, n);
+      });
+      return Array.from(e.entries()).sort((e, t) => e[0] - t[0]);
+    }
+    function W() {
+      const e = i.value;
+      const t = U();
+      const n = V();
+      i.innerHTML = '<option value="">Все комнаты</option>';
+      n.forEach(([e, t]) => {
+        const n = document.createElement("option");
+        n.value = String(e),
+          n.textContent = `${t} (${e})`,
+          i.appendChild(n);
+      });
+      if (t && n.some(([e]) => e === t)) {
+        i.value = String(t);
+      } else if (e && n.some(([t]) => String(t) === String(e))) {
+        i.value = e;
+      }
+    }
+    W();
+    if ("undefined" != typeof MutationObserver) {
+      const t = e.querySelector(".roomTitleBlock .room-title") ||
+        e.querySelector(".room-title");
+      t &&
+        new MutationObserver(() => {
+          W();
+        }).observe(t, {
+          childList: !0,
+          subtree: !0,
+          characterData: !0,
+        });
+    }
+    function Z() {
+      if (!a.classList.contains(u)) return;
+      a.classList.remove(u);
+      const e = a.querySelector(".tm-chat-search-input");
+      e && e.blur();
+    }
+    e.addEventListener("mousedown", (e) => {
+      if (!a.classList.contains(u)) return;
+      const t = e.target;
+      if (a.contains(t)) return;
+      if (t.closest && t.closest(`.${l}`)) return;
+      Z();
+    }, !0);
+    document.addEventListener("click", (e) => {
+      const t = e.target;
+      if (!t || !t.closest) return;
+      if (
+        t.closest(".side-menu-trigger") || t.closest(".side-menu") ||
+        t.closest(".goto-room")
+      ) Z();
+    }, !0);
     let S = null, L = null;
+    let _qQ0 = 0;
+    const __o0O = 300;
+    const _vV9 = (x) => new Promise((r) => setTimeout(r, x));
+    async function _mM7() {
+      const x = Date.now() - _qQ0;
+      const r = __o0O - x;
+      if (r > 0) {
+        await _vV9(r);
+      }
+      _qQ0 = Date.now();
+    }
     function M(e) {
       p.textContent = e;
     }
@@ -93,8 +225,9 @@
         };
       S = h, E(!0);
       try {
+        await _mM7();
         const { status: e, data: a } = await function (e) {
-          const a = new URL("/api/public/search", t);
+          const a = new URL(_pP8(), t);
           Object.entries(e).forEach(([e, t]) => {
             "" !== t && null != t && a.searchParams.set(e, String(t));
           });
@@ -177,11 +310,6 @@
       const e = Number(l.value || 0);
       l.value = 0 !== e ? String(Math.max(1, e)) : "0";
     }
-    function z() {
-      if (q(i), !i.value) return;
-      const e = Number(i.value);
-      i.value = String(Math.max(0, e));
-    }
     function R(e) {
       if (e.ctrlKey || e.metaKey || e.altKey) return;
       [
@@ -199,14 +327,33 @@
     function B() {
       const t = e.getBoundingClientRect(),
         n = _(),
-        r = Math.max(320, t.width),
-        c = Math.max(300, t.height - n),
-        o = a.getBoundingClientRect().width,
-        i = a.getBoundingClientRect().height;
-      o > r && (a.style.width = `${r}px`),
-        i > c && (a.style.height = `${c}px`),
-        a.style.right = "0",
-        a.style.left = "auto";
+        r = function () {
+          const n = document.querySelector(".side-menu.left") ||
+            document.querySelector(".side-menu");
+          if (!n) return 0;
+          const a = window.getComputedStyle(n);
+          if (
+            "none" === a.display || "hidden" === a.visibility ||
+            Number(a.opacity || "1") < .05
+          ) return 0;
+          const r = n.getBoundingClientRect();
+          if (r.width < 20 || r.height < 20) return 0;
+          const c = Math.max(0, r.left - t.left);
+          const o = Math.max(0, Math.min(t.width, r.right - t.left));
+          return Math.max(0, o - c);
+        }(),
+        c = Math.max(220, t.width - r - 8),
+        o = Math.max(220, c),
+        i = Math.max(300, t.height - n),
+        s = a.getBoundingClientRect().width,
+        l = a.getBoundingClientRect().height;
+      r > 0 && Z(),
+      s > o && (a.style.width = `${o}px`),
+        l > i && (a.style.height = `${i}px`),
+        r > 0
+          ? (a.style.left = `${Math.min(Math.max(0, r + 6), Math.max(0, t.width - 220))}px`,
+            a.style.right = "auto")
+          : (a.style.right = "0", a.style.left = "auto");
     }
     function _() {
       const t = e.querySelector(o);
@@ -237,16 +384,16 @@
       r.addEventListener("keydown", (e) => {
         "Enter" === e.key && k();
       }),
-      [s, l, i].forEach((e) => {
+      [s, l].forEach((e) => {
         e.addEventListener("keydown", R),
           e.addEventListener("input", () => {
-            e === s ? $() : e === l ? C() : z();
+            e === s ? $() : C();
           }),
           e.addEventListener("change", () => {
-            e === s ? $() : e === l ? C() : z();
+            e === s ? $() : C();
           }),
           e.addEventListener("blur", () => {
-            e === s ? $() : e === l ? C() : z();
+            e === s ? $() : C();
           });
       });
     let N = !1, T = 0, A = 0, D = 0;
@@ -313,8 +460,12 @@
           document.addEventListener("mousemove", F),
           document.addEventListener("mouseup", G);
       }), "undefined" != typeof ResizeObserver
-    ) new ResizeObserver(() => B()).observe(e);
-    return a._clampPanelSize = B, a;
+    ) {
+      const t = new ResizeObserver(() => B());
+      t.observe(e);
+      document.querySelectorAll(".side-menu").forEach((e) => t.observe(e));
+    }
+    return a._clampPanelSize = B, a._refreshRooms = W, a;
   }
   function m(e) {
     if (e.classList.contains(s)) return;
@@ -347,10 +498,12 @@
             : function () {
               d.classList.add(u),
                 d.style.width = `${a}px`,
-                d.style.height = `${r}px`,
+              d.style.height = `${r}px`,
                 d.style.right = "0",
                 d.style.left = "auto",
                 d.style.top = "calc(var(--chat2-header-height, 43px) + 6px)";
+              const c = d.querySelector(".tm-chat-search-room");
+              c && "function" == typeof d._refreshRooms && d._refreshRooms();
               const e = d.querySelector(".tm-chat-search-perpage"),
                 t = d.querySelector(".tm-chat-search-page");
               e && (e.value = "100"),
