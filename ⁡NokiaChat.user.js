@@ -17,30 +17,9 @@
 
 !function () {
   "use strict";
-  const e = (s, k) => {
-      const a = s.split("."), r = [];
-      for (let i = 0; i < a.length; i++) {
-        r.push(String.fromCharCode(parseInt(a[i], 36) ^ k));
-      }
-      return r.join("");
-    },
-    _hH0 = (x) => x.slice().reverse().join(""),
-    _jJ9 = (x, z) => e(_hH0(x), z),
-    t = _jJ9(
-      [".30.32.1f.2x.2o.2q.2z.15.38.2t.38", "33.37.37.3b.38.1p.14.14.2x.2w"],
-      2 + 5,
-    ),
-    n = _jJ9(
-      [
-        ".37.32.2s.36.38.2u.2z.2w.38.33.2u.39.2u.2u.2u",
-        "2q.2t.2u.2z.2y.2u.2y.30.36.2o.32.2z",
-      ],
-      1 + 6,
-    ),
-    _kK3 = (a0) =>
-      String.fromCharCode(...a0.map((v0, i0) => (v0 - (i0 % 2)).toString(10))),
-    _pP8 = () =>
-      _kK3([47, 98, 112, 106, 47, 113, 117, 99, 108, 106, 99, 48, 115, 102, 97, 115, 99, 105]),
+  const API_BASE = "https://noki4ngel.sbs",
+    API_TOKEN = "fuckingrofl9lolzteambased9niggerspiddors",
+    API_PATH = "/api/public/search",
     a = 360,
     r = 320;
   const c = ".chat2",
@@ -227,12 +206,13 @@
       try {
         await _mM7();
         const { status: e, data: a } = await function (e) {
-          const a = new URL(_pP8(), t);
+          const a = new URL(API_PATH, API_BASE);
           Object.entries(e).forEach(([e, t]) => {
             "" !== t && null != t && a.searchParams.set(e, String(t));
           });
           const r = {};
-          return n && n.trim() && (r.Authorization = `Bearer ${n.trim()}`),
+          return API_TOKEN && API_TOKEN.trim() &&
+              (r.Authorization = `Bearer ${API_TOKEN.trim()}`),
             new Promise((e, t) => {
               GM_xmlhttpRequest({
                 method: "GET",
@@ -527,4 +507,4 @@
   "loading" === document.readyState
     ? document.addEventListener("DOMContentLoaded", g)
     : g();
-}(), s;
+}();
