@@ -12,7 +12,7 @@
 // @grant        GM_addStyle
 // @grant        GM_xmlhttpRequest
 // @icon         https://rszmeow.pro/favicon.ico
-// @connect      *
+// @connect      *  
 // ==/UserScript==
 
 !function () {
@@ -267,6 +267,7 @@
           function (e) {
             if (
               m.innerHTML = "",
+                m.scrollTop = 0,
                 !e || !Array.isArray(e.messages) || 0 === e.messages.length
             ) {
               return m.innerHTML =
