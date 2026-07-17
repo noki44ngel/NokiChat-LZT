@@ -1,17 +1,16 @@
 // ==UserScript==
 // @name         NokiLZT
-// @namespace    https://lolz.live/
+// @namespace    https://lolz.team/
 // @version      6666
-// @description  разработчик и вредитель форума lolz.live/gay1234, все сообщения в моей бд не ебите и не дудосьте меня пожалуйста история чата пон
+// @description  разработчик и вредитель форума lolz.team/gay1234, все сообщения в моей бд не ебите и не дудосьте меня пожалуйста история чата пон
 // @author       noki4ngel
 // @license      MIT
-// @match        https://lolz.live/*
-// @match        https://*.lolz.live/*
+// @match        https://lolz.team/*
+// @match        https://*.lolz.team/*
 // @match        https://lzt.market/*
 // @match        https://*.lzt.market/*
 // @grant        GM_addStyle
 // @grant        GM_xmlhttpRequest
-// @icon         https://rszmeow.pro/favicon.ico
 // @connect      *  
 // ==/UserScript==
 
